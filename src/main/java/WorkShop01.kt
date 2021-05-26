@@ -88,6 +88,7 @@ object WorkShop01 {
 fun main(args: Array<String>) {
     //TODO 2.4 - Расскомметировать функцию ниже, чтобы увидеть результат
     //WorkShop01.printRealOnePrecisionValues()
+    print("dasdas")
 
     //TODO 3.4 - Расскомметировать функцию ниже, чтобы увидеть результат
     //WorkShop01.printRealTwoPrecisionValue()
