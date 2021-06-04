@@ -1,3 +1,5 @@
+package ws01
+
 import org.junit.Assert.assertEquals
 import org.junit.Test
 

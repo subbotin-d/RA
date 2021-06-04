@@ -1,5 +1,8 @@
+package ws01
+
 import org.junit.Assert.*
 import org.junit.Test
+import ws01.WorkShop01
 
 class WorkShop01P5Test {
 

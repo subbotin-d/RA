@@ -1,3 +1,5 @@
+package ws01
+
 object WorkShop01 {
 
     fun numericValues() {
