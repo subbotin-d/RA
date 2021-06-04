@@ -24,7 +24,7 @@ object WorkShop01 {
         var1 += 0.1111111111111111F.times(2)
 
 
-        val bd1: BigDecimal = BigDecimal(Float.toString(var1))
+        val bd1: BigDecimal = BigDecimal(var1.toString())
         println(bd1)
 
         val bd2: BigDecimal = BigDecimal.valueOf(0.2222222222222222)
@@ -56,9 +56,7 @@ object WorkShop01 {
 
     //TODO 4. Написать функцию (compareTwoStrings), которая принимает на вход две строки и возвращает результат сравнения
     //Проверить функцию можно с помощью тестов, которые лежат в директории test/java (Имя класса - WorkShop01P4Test)
-    fun compareTwoStrings(str1: String, str2: String): Boolean {
-        return str1 == str2
-    }
+    fun compareTwoStrings(str1: String, str2: String): Boolean = str1 < str2
 
     //TODO 5. Написать функцию, которая
     // 1. Принимает на вход число типа Int
@@ -68,13 +66,11 @@ object WorkShop01 {
     // PS2. Оператор, который определяет остаток от деления - %
     // /
     // Для проверки задания необходимо запустить тесты в классе WorkShop01P5Test
-    fun evenOddNumber(number: Int): String {
-        return if (number % 2 == 0) {
+    fun evenOddNumber(number: Int): String = if (number % 2 == 0) {
             "Чётное"
         } else {
             "Нечётное"
         }
-    }
 
     //TODO 6. Необходимо реализовать лямбда-функцию и задать ей имя lambda, которая
     // 1. Принимает два значения типа Int и возвращает значение типа Int
@@ -117,10 +113,6 @@ object WorkShop01 {
             else        -> "Число $num не принадлежит ни одному из интервалов"
         }
     }
-}
-
-private fun Float.Companion.toString(var1: Float): String {
-    return var1.toString()
 }
 
 fun main(args: Array<String>) {
