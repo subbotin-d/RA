@@ -65,8 +65,8 @@ open class Vector(initialSize : Int) : Comparable<Vector> {
         return (dotProductWith(anotherVector) / (this.length * anotherVector.length))
     }
 
-    fun addDimension(value: Double? = 0.0) {
-        _dimensions.add(value ?: 0.0)
+    fun addDimension(value: Double = 0.0) {
+        _dimensions.add(value)
     }
 
     fun removeDimension(dimensionIndex: Int) {
