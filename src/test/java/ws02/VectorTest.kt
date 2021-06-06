@@ -314,10 +314,12 @@ class VectorTest {
     fun `compare works`() {
         val vector1 = Vector(1.1, 2.2, 3.3, 4.4, 5.5)
         val vector2 = Vector(11.1, 2.2, 3.3, 4.4, 5.5)
+        val vector3 = Vector(2.2, 11.1, 3.3, 4.4, 5.5) //vector3.length == vector2.length
 
         assertTrue("compare correct", vector1 < vector2)
         assertTrue("compare symmetric", vector2 > vector1)
         assertTrue("self compare leads to eq", vector2 == vector2)
+        assertTrue("Same length vectors equal", vector2 >= vector3 && vector2 <= vector3)
     }
 
     @Test
