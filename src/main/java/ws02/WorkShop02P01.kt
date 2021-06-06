@@ -2,7 +2,7 @@ package ws02
 
 //TODO 1.1. Реализовать функцию getCustomerCities,
 // которая должна возвращать все города клиентов в единственном экземпляре
-fun Shop.getCustomerCities(): Set<City> = TODO()
+fun Shop.getCustomerCities(): Set<City> = customers.map { it.city }.toSet()
 
 //TODO 1.2. Реализовать функцию getCustomersFromCity,
 // которая возвращает всех клиентов из указанного города city
