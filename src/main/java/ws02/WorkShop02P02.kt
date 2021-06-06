@@ -22,9 +22,28 @@ package ws02
 // 6. Добавление/удаление элемента
 // В реализации необходимо учесть что количество координат у N-мерного вектора может различаться, в этом случае
 //   необходимо кидать иксключение IllegalArgumentException - (см. https://kotlinlang.org/docs/exceptions.html оператор "throw")
+// ----> см файлы Vector, Vector3
 
-//TODO 2.2 *** Реализовать механизм сравнения(исключая равенство) двух векторов по длине. (Пример использования: vector1 < vector2)
-// См. https://kotlinlang.org/docs/operator-overloading.html#comparison-operators
 
-//TODO 2.3 *** Создать список векторов и отсортировать их в порядке убывания с помощью метода списка sorted() (list.sorted())
-// Tip. Необходимо реализовать интерфейс Comparable<Vector> / Comparable<Vector3>
+fun main() {
+    val vector1 = Vector3(1.0, 2.0, 3.0)
+    val vector2 = Vector3(10.0, 2.0, 3.0)
+    val vector3 = Vector3(100.0, 2.0, 3.0)
+    val anotherVector2 = Vector3(10.0, 2.0, 3.0)
+
+    //TODO 2.2 *** Реализовать механизм сравнения(исключая равенство) двух векторов по длине. (Пример использования: vector1 < vector2)
+    // См. https://kotlinlang.org/docs/operator-overloading.html#comparison-operators
+    println("Vector1 is less than vector2 : ${vector1 < vector2}")
+    println("Vector3 is greater than vector2 : ${vector3 > vector2}")
+    println("Vector2 is equal to anoother vector2 : ${vector2 >= anotherVector2 && vector2 <= anotherVector2}")
+
+    //TODO 2.3 *** Создать список векторов и отсортировать их в порядке убывания с помощью метода списка sorted() (list.sorted())
+    // Tip. Необходимо реализовать интерфейс Comparable<Vector> / Comparable<Vector3>
+    val vectors = listOf<Vector3>(vector2, vector3, vector1)
+    val sortedVectors = vectors.sorted()
+    val isSortingCorrect = sortedVectors[0] == vector1 &&
+            sortedVectors[1] == vector2 &&
+            sortedVectors[2] == vector3
+
+    println("Sorting works properly: $isSortingCorrect")
+}
