@@ -26,5 +26,5 @@ package ws02
 //TODO 2.2 *** Реализовать механизм сравнения(исключая равенство) двух векторов по длине. (Пример использования: vector1 < vector2)
 // См. https://kotlinlang.org/docs/operator-overloading.html#comparison-operators
 
-//TODO 2.3 *** Создать список векторов и отсортировать их в порядке убывания с помощью метода списка sorted() (list.sorted())
+//TODO 2.3 *** Создать список векторов и отсортировать их в порядке возрастания с помощью метода списка sorted() (list.sorted())
 // Tip. Необходимо реализовать интерфейс Comparable<Vector> / Comparable<Vector3>
