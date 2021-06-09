@@ -137,3 +137,16 @@ class Vector3: Vector {
 
     constructor(x: Double, y: Double, z: Double): super(x, y, z)
 }
+
+fun main() {
+    val vector1 = Vector3(2.0,1.0,0.0)
+    val vector2 = Vector3(1.0, 2.0, 3.0)
+    val vector3 = Vector3(0.0, 0.0, 0.0)
+    val vector4 = Vector(1.0,2.0,3.0)
+    val vector5 = Vector(2.0,3.0,4.0,5.0)
+    val vector6 = Vector(3.0,4.0,5.0,6.0)
+
+    val vectors = listOf(vector1, vector2, vector3, vector4, vector5, vector6)
+    println(vectors)
+    println(vectors.sorted())
+}
