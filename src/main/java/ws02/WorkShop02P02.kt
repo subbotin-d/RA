@@ -1,6 +1,10 @@
 package ws02
 
-//TODO 2.1 Релизовать 2 класса, которые представляют собой "вектор" https://ru.wikipedia.org/wiki/%D0%92%D0%B5%D0%BA%D1%82%D0%BE%D1%80_(%D0%B3%D0%B5%D0%BE%D0%BC%D0%B5%D1%82%D1%80%D0%B8%D1%8F)
+import java.lang.IllegalArgumentException
+import kotlin.math.sqrt
+
+//TODO 2.1 Релизовать 2 класса, которые представляют собой "вектор"
+// https://ru.wikipedia.org/wiki/%D0%92%D0%B5%D0%BA%D1%82%D0%BE%D1%80_(%D0%B3%D0%B5%D0%BE%D0%BC%D0%B5%D1%82%D1%80%D0%B8%D1%8F)
 // Первый класс должен представлять из себя трехмерный вектор (Vector3)
 // Второй класс должен представлять из себя N-мерный вектор (Vector)
 // /
@@ -9,8 +13,10 @@ package ws02
 // /
 // /
 // Должны быть реализованы конструкторы:
-// 1. Конструктор "По умолчанию". Создает вектор, у которого все компоненты содержат нули (для N-мерного вектора, конструктор "по умолчанию" должен принимать размер)
-// 2. Конструктор, который позволяет создать объект с указанием 3-х компонент для трехмерного и N компонент N-мерного (можно использовать vararg для N-мерного)
+// 1. Конструктор "По умолчанию". Создает вектор, у которого все компоненты содержат нули
+// (для N-мерного вектора, конструктор "по умолчанию" должен принимать размер)
+// 2. Конструктор, который позволяет создать объект с указанием 3-х компонент для трехмерного и
+// N компонент N-мерного (можно использовать vararg для N-мерного)
 // /
 // /
 // Реализовать операции, которые доступны с векторами:
@@ -28,3 +34,124 @@ package ws02
 
 //TODO 2.3 *** Создать список векторов и отсортировать их в порядке возрастания с помощью метода списка sorted() (list.sorted())
 // Tip. Необходимо реализовать интерфейс Comparable<Vector> / Comparable<Vector3>
+
+//1. Конструктор "По умолчанию". Создает вектор, у которого все компоненты содержат нули
+// (для N-мерного вектора, конструктор "по умолчанию" должен принимать размер)
+open class Vector(size: Int): Comparable<Vector> {
+
+    var elements = mutableListOf<Float>()
+
+    init {
+        for (i in 0 until size) {
+            elements.add(0.0f)
+        }
+    }
+
+    // 2. Конструктор, который позволяет создать объект с указанием 3-х компонент для трехмерного и
+    // N компонент N-мерного (можно использовать vararg для N-мерного)
+    constructor(vararg elements: Float): this(elements.size) {
+        this.elements = elements.toMutableList()
+    }
+
+    constructor(elements: List<Float>): this(elements.size) {
+        this.elements = elements.toMutableList()
+    }
+
+    // 1. Опеределение длиный вектора (вычисляется как квадратный корень из суммы квадратов всех компонент)
+    /* Длина вектора, заданного координатами, равна корню квадратному из суммы квадратов его координат.*/
+    fun length(): Float = sqrt(elements.fold(0.0f) { acc, current -> acc + current * current })
+
+    // 2. Сложение и вычитание двух векторов (вычисляется как сумма/разность соответствующих координат вектора)
+    fun mergeVector(other: Vector): Vector {
+        if (other.elements.size != this.elements.size) {
+            throw IllegalArgumentException()
+        } else {
+            val elements = mutableListOf<Float>()
+            for(i in 0 until this.elements.size) {
+                elements.add(this.elements[i] + other.elements[i])
+            }
+            return Vector(elements)
+        }
+    }
+
+    fun subVector(other:Vector): Vector {
+        if (other.elements.size != this.elements.size) {
+            throw IllegalArgumentException()
+        } else {
+            val elements = mutableListOf<Float>()
+            for(i in 0 until this.elements.size) {
+                elements.add(this.elements[i] - other.elements[i])
+            }
+            return Vector(elements)
+        }
+    }
+
+    // 3. Скалярное произведение двух векторов
+    /*Скалярным произведением двух векторов  и  называется число,
+    равное произведению длин этих векторов на косинус угла  между ними.*/
+    /*Скалярное произведение векторов равно сумме произведений соответствующих координат.*/
+    fun scaleVector(other: Vector): Float {
+        if (other.elements.size != this.elements.size) {
+            throw IllegalArgumentException()
+        } else {
+            var result = 0f
+            for(i in 0 until this.elements.size) {
+                result += this.elements[i] * other.elements[i]
+            }
+            return result
+        }
+    }
+
+    // 4. Умножение вектора на число
+    fun multiVector(num: Int) = Vector(this.elements.map { number -> number * num })
+
+    // 5. Вычисление косинуса между двумя векторами
+    /* Чтобы найти косинус угла между векторами нужно,
+    * скалярное произведение этих векторов разделить на произведение их длин.*/
+    fun cos(other: Vector): Float =
+            if (length() != 0.0f && other.length() != 0.0f)
+                kotlin.math.cos((scaleVector(other) / length() * other.length()))
+            else
+                throw ArithmeticException()
+
+    // 6. Добавление/удаление элемента
+    fun addElement(element: Float) { elements.add(element) }
+
+    fun removeElement(element: Float) {
+        if (elements.any { it == element }) {
+            elements.remove(element)
+        } else {
+            throw IllegalArgumentException()
+        }
+    }
+
+    override fun compareTo(other: Vector) =
+            when {
+                this.length() < other.length() -> -1
+                this.length() > other.length() -> 1
+                else -> 0
+            }
+
+    override fun toString(): String = elements.toString()
+}
+
+// Первый класс должен представлять из себя трехмерный вектор (Vector3)
+// 1. Конструктор "По умолчанию". Создает вектор, у которого все компоненты содержат нули
+class Vector3: Vector {
+
+    constructor(): super(3)
+
+    constructor(x: Float, y: Float, z: Float): super(x, y, z)
+}
+
+fun main() {
+
+    val vector1 = Vector(1f,2f,3f)
+    val vector2 = Vector3()
+    val vector3 = Vector(2f,3f,4f)
+    val vector4 = Vector3(3f,4f,5f)
+    val vector5 = Vector(4)
+
+    val vectors = listOf(vector1, vector4, vector5, vector3, vector2)
+    println(vectors.sorted())
+}
