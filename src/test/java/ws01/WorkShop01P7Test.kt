@@ -5,13 +5,13 @@ import org.junit.Test
 
 class WorkShop01P7Test {
 
-    private val lessOrEqual: (Int, Int) -> Boolean = { num1, num2 ->
+/*    private val lessOrEqual: (Int, Int) -> Boolean = { num1, num2 ->
         num1 <= num2
     }
 
     private val moreOrEqual: (Int, Int) -> Boolean = { num1, num2 ->
         num1 >= num2
-    }
+    }*/
 
     //TODO Раскомментировать тесты и прогнать
 //    @Test

@@ -43,9 +43,9 @@ object WorkShop01 {
     // PS2. Оператор, который определяет остаток от деления - %
     // /
     // Для проверки задания необходимо запустить тесты в классе WorkShop01P5Test
-    fun evenOddNumber(number: Int) {
-        TODO()
-    }
+    /*fun evenOddNumber(number: Int) {
+
+    }*/
 
     //TODO 6. Необходимо реализовать лямбда-функцию и задать ей имя lambda, которая
     // 1. Принимает два значения типа Int и возвращает значение типа Int
@@ -76,9 +76,9 @@ object WorkShop01 {
     //  PS 2. Для формирования диапазона можно использовать https://kotlinlang.org/docs/basic-syntax.html#ranges
     //  /
     //  Для проверки задания необходимо запустить тесты в классе WorkShop01P8Test
-    fun checkNumInRange(num: Int): String {
-        TODO()
-    }
+    /*fun checkNumInRange(num: Int): String {
+
+    }*/
 }
 
 fun main(args: Array<String>) {
