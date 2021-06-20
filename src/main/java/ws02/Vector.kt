@@ -91,7 +91,7 @@ open class Vector(size: Int): Comparable<Vector> {
 
     // 5. Вычисление косинуса между двумя векторами
 
-    fun cosOfAngleBetweenTwoVectors(incVector1: Vector, incVector2: Vector) : Double? {
+    fun cosOfAngleBetweenTwoVectors(incVector1: Vector, incVector2: Vector) : Double {
         return try {
             checkSize(incVector1, incVector2)
             if (length(incVector1) != 0.0 && length(incVector2) != 0.0) {
@@ -101,7 +101,7 @@ open class Vector(size: Int): Comparable<Vector> {
             angleCalculationResult
         } catch (e: ArithmeticException) {
             println("The length of one of the vectors is 0")
-            null
+            0.0
         }
     }
 
