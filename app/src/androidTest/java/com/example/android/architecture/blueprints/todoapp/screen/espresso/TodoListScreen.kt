@@ -11,6 +11,7 @@ import androidx.test.espresso.matcher.ViewMatchers.withParent
 import androidx.test.espresso.matcher.ViewMatchers.withParentIndex
 import androidx.test.espresso.matcher.ViewMatchers.withText
 import com.example.android.architecture.blueprints.todoapp.R
+import com.example.android.architecture.blueprints.todoapp.screen.BaseScreen
 import org.hamcrest.Matchers.allOf
 
 object TodoListScreen : BaseScreen<TodoListScreen>() {

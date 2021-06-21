@@ -1,4 +1,4 @@
-package com.example.android.architecture.blueprints.todoapp.screen.espresso
+package com.example.android.architecture.blueprints.todoapp.screen
 
 abstract class BaseScreen<T> {
 
