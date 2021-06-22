@@ -19,6 +19,7 @@ branches:
     - workshop5
 
 script:
+  - ./gradlew :spotlessApply
   - ./gradlew build connectedAndroidTest
 
 before_script:
