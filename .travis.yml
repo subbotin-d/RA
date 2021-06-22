@@ -35,4 +35,4 @@ before_install:
   - sdkmanager tools
   - sdkmanager "system-images;android-28;default;x86_64"
   - echo no | avdmanager create avd --force -n emulatorApi28 -k "system-images;android-28;default;x86_64"
-  - emulator -avd emulatorApi28 -no-audio -no-window &
+  - $ANDROID_HOME/tools -avd emulatorApi28 -no-audio -no-window &
