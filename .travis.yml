@@ -22,12 +22,17 @@ script:
   - ./gradlew build connectedAndroidTest
 
 before_script:
-  - echo no | avdmanager create avd --force -n test -k "system-images;android-28;default;x86_64" -c 100M
-  - emulator -avd test -no-audio -no-window &
   - android-wait-for-emulator
+  - adb shell settings put global window_animation_scale 0 &
+  - adb shell settings put global transition_animation_scale 0 &
+  - adb shell settings put global animator_duration_scale 0 &
   - adb shell input keyevent 82 &
 
 before_install:
   - touch $HOME/.android/repositories.cfg
   - yes | sdkmanager "platforms;android-30"
   - yes | sdkmanager "build-tools;31.0.0-rc5"
+  - sdkmanager tools
+  - sdkmanager "system-images;android-28;default;x86_64"
+  - echo no | avdmanager create avd --force -n emulatorApi24 -k "system-images;android-28;default;x86_64"
+  - emulator -avd test -no-audio -no-window &
