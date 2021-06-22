@@ -30,4 +30,4 @@ before_script:
 before_install:
   - touch $HOME/.android/repositories.cfg
   - yes | sdkmanager "platforms;android-30"
-  - yes | sdkmanager "build-tools;31.0.0"
+  - yes | sdkmanager "build-tools;31.0.0-rc5"

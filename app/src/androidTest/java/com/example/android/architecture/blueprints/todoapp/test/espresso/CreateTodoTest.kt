@@ -4,10 +4,11 @@ import androidx.test.ext.junit.rules.ActivityScenarioRule
 import com.example.android.architecture.blueprints.todoapp.screen.espresso.AddTodoScreen
 import com.example.android.architecture.blueprints.todoapp.screen.espresso.TodoListScreen
 import com.example.android.architecture.blueprints.todoapp.tasks.TasksActivity
+import com.kaspersky.kaspresso.testcases.api.testcase.TestCase
 import org.junit.Rule
 import org.junit.Test
 
-class CreateTodoTest {
+class CreateTodoTest: TestCase() {
 
 	@get:Rule
 	val activityScenarioRule = ActivityScenarioRule<TasksActivity>(TasksActivity::class.java)
@@ -24,6 +25,7 @@ class CreateTodoTest {
 			tapOnSaveTodoButton()
 		}
 
+		//Waiting
 		Thread.sleep(4000)
 		TodoListScreen {
 			checkTodoTitle("My first note title", 2)
