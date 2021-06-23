@@ -75,6 +75,9 @@ android {
  */
 dependencies {
 
+    androidTestImplementation 'androidx.test:runner:1.4.0-alpha04'
+    androidTestUtil 'androidx.test:orchestrator:1.4.0-alpha04'
+
     // App dependencies
     implementation "androidx.appcompat:appcompat:$appCompatVersion"
     implementation "androidx.cardview:cardview:$cardVersion"
