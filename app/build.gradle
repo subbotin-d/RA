@@ -31,6 +31,10 @@ android {
             testProguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguardTest-rules.pro'
         }
     }
+
+    adbOptions {
+        timeOutInMs 600000
+    }
     
     testOptions {
         execution = "ANDROIDX_TEST_ORCHESTRATOR"
