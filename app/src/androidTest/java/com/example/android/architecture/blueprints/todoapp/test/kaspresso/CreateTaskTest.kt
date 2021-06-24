@@ -7,17 +7,14 @@ import com.example.android.architecture.blueprints.todoapp.tasks.TasksActivity
 import org.junit.Rule
 import org.junit.Test
 
+// TODO Добавить TODO и проверить что она добавилась
 class CreateTaskTest: MyTestCase() {
 
     @get:Rule
     val activityScenarioRule = ActivityScenarioRule(TasksActivity::class.java)
 
     @Test
-    fun addNewTask() = before {
-
-    }.after {
-
-    }.run {
+    fun addNewTask() = run {
 
         TaskListScreen {
             addButton {
@@ -27,10 +24,10 @@ class CreateTaskTest: MyTestCase() {
 
         AddTaskScreen {
             title {
-                replaceText("Test task title")
+                replaceText(TEST_TASK_TITLE)
             }
             description {
-                replaceText("Test task description")
+                replaceText(TEST_TASK_DESCRIPTION)
             }
             saveButton {
                 click()
@@ -45,7 +42,7 @@ class CreateTaskTest: MyTestCase() {
                     }
                     taskTitle {
                         isDisplayed()
-                        hasText("Test task title")
+                        hasText(TEST_TASK_TITLE)
                     }
                 }
             }
