@@ -1,7 +1,6 @@
 package com.example.android.architecture.blueprints.todoapp.test.espresso
 
 import androidx.test.ext.junit.rules.ActivityScenarioRule
-import com.example.android.architecture.blueprints.todoapp.screen.espresso.KTodoListScreen
 import com.example.android.architecture.blueprints.todoapp.tasks.TasksActivity
 import com.kaspersky.kaspresso.testcases.api.testcase.TestCase
 import org.junit.Rule
@@ -15,9 +14,38 @@ class CreateTodoTest : TestCase() {
 	@Test
 	fun checkAddNewTodo() {
 		run {
-			KTodoListScreen {
-				addTaskFab {
-					isDisplayed()
+			TodoListScreen {
+				addButton {
+					click()
+				}
+			}
+
+			AddTaskScreen {
+				title {
+					replaceText("Test task title")
+				}
+				description {
+					replaceText("Test task description")
+				}
+				saveButton {
+					click()
+				}
+			}
+
+			TodoListScreen {
+				taskList {
+					childAt<TaskListScreen.TaskListItem>(2) {
+						checkBox {
+							isNotChecked()
+						}
+						taskTitle {
+							isDisplayed()
+							hasText("Test task title")
+						}
+					}
+				}
+				taskList {
+					hasSize(3)
 				}
 			}
 		}
