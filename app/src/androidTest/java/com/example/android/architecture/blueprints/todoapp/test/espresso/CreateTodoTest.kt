@@ -1,6 +1,8 @@
 package com.example.android.architecture.blueprints.todoapp.test.espresso
 
 import androidx.test.ext.junit.rules.ActivityScenarioRule
+import com.example.android.architecture.blueprints.todoapp.screen.espresso.AddTaskScreen
+import com.example.android.architecture.blueprints.todoapp.screen.espresso.TodoListScreen
 import com.example.android.architecture.blueprints.todoapp.tasks.TasksActivity
 import com.kaspersky.kaspresso.testcases.api.testcase.TestCase
 import org.junit.Rule
@@ -34,7 +36,7 @@ class CreateTodoTest : TestCase() {
 
 			TodoListScreen {
 				taskList {
-					childAt<TaskListScreen.TaskListItem>(2) {
+					childAt<TodoListScreen.TaskListItem>(2) {
 						checkBox {
 							isNotChecked()
 						}
