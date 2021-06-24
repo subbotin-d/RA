@@ -5,6 +5,7 @@ buildscript {
     repositories {
         google()
         jcenter()
+        maven { url 'https://oss.jfrog.org/libs-snapshot' }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:4.2.1'
@@ -24,6 +25,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url 'https://oss.jfrog.org/libs-snapshot' }
     }
     apply plugin: 'com.diffplug.spotless'
     spotless {
@@ -68,6 +70,6 @@ ext {
     rulesVersion = '1.0.1'
     timberVersion = '4.7.1'
     truthVersion = '1.1.2'
-    kaspressoVersion = '1.2.0'
+    kaspressoVersion = '1.2.1'
     runner = '1.4.0-beta02'
 }

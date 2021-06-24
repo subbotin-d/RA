@@ -1,8 +1,8 @@
 package com.example.android.architecture.blueprints.todoapp.screen.espresso
 
-import com.agoda.kakao.screen.Screen
-import com.agoda.kakao.text.KButton
 import com.example.android.architecture.blueprints.todoapp.R
+import io.github.kakaocup.kakao.screen.Screen
+import io.github.kakaocup.kakao.text.KButton
 
 object KTodoListScreen : Screen<KTodoListScreen>() {
 

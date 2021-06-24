@@ -117,9 +117,6 @@ dependencies {
     androidTestImplementation "junit:junit:$junitVersion"
     androidTestImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion"
 
-    androidTestImplementation "androidx.test:runner:$runner"
-    androidTestUtil "androidx.test:orchestrator:$runner"
-
     // AndroidX Test - JVM testing
     testImplementation "androidx.test:core-ktx:$androidXTestCoreVersion"
     testImplementation "androidx.test.ext:junit-ktx:$androidXTestExtKotlinRunnerVersion"
@@ -143,8 +140,8 @@ dependencies {
     androidTestImplementation "org.robolectric:annotations:$robolectricVersion"
     implementation "androidx.test.espresso:espresso-idling-resource:$espressoVersion"
     androidTestImplementation "com.kaspersky.android-components:kaspresso:$kaspressoVersion"
-    androidTestImplementation('androidx.test:runner:1.1.0')
-    androidTestImplementation('androidx.test:rules:1.1.0')
+    androidTestImplementation "androidx.test:runner:$runner"
+    androidTestUtil "androidx.test:orchestrator:$runner"
 
     // Resolve conflicts between main and test APK:
     androidTestImplementation "androidx.annotation:annotation:$androidXAnnotations"
