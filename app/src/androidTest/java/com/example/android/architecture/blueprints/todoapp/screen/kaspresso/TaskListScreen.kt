@@ -26,7 +26,7 @@ object TaskListScreen: Screen<TaskListScreen>() {
     fun checkCompletedDisplayed() {
         taskListView {
             for (i in 0 until getSize()) {
-                childAt<TaskListScreen.TaskListItem>(i) {
+                childAt<TaskListItem>(i) {
                     checkBox {
                         isDisplayed()
                         isChecked()
@@ -37,14 +37,27 @@ object TaskListScreen: Screen<TaskListScreen>() {
     }
 
     // marks as completed odd tasks
-    fun markAsCompleted() {
+    fun markAsCompletedOdds() {
         for (i in 0 until taskListView.getSize()) {
             taskListView {
-                childAt<TaskListScreen.TaskListItem>(i) {
+                childAt<TaskListItem>(i) {
                     checkBox {
                         if (i % 2 == 0) {
                             click()
                         }
+                    }
+                }
+            }
+        }
+    }
+
+    // marks as completed first @param quantity tasks
+    fun markAsCompleted(tasks: Int) {
+        for (i in 0 until tasks) {
+            taskListView {
+                childAt<TaskListItem>(i) {
+                    checkBox {
+                        click()
                     }
                 }
             }

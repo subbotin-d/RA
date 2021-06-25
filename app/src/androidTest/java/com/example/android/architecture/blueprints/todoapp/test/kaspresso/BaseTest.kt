@@ -5,6 +5,11 @@ import com.example.android.architecture.blueprints.todoapp.screen.kaspresso.Task
 
 open class BaseTest: MyTestCase() {
 
+    companion object {
+        const val TEST_TASK_TITLE = "Test task title"
+        const val TEST_TASK_DESCRIPTION = "Test task description"
+    }
+
     protected fun addTasks(quantity: Int) {
 
         for (i in 1..quantity) {

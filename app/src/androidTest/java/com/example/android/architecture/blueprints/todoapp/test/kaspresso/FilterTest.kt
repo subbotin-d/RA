@@ -18,10 +18,12 @@ class FilterTest: BaseTest() {
 
         addTasks(3)
 
+        // mark odds tasks as completed
         TaskListScreen {
-            markAsCompleted()
+            markAsCompletedOdds()
         }
 
+        // filter tasks by "completed" marks
         ToolbarScreen {
             filter {
                 click()
@@ -31,6 +33,7 @@ class FilterTest: BaseTest() {
             }
         }
 
+        // check only completed tasks displayed
         TaskListScreen {
             checkCompletedDisplayed()
         }

@@ -1,7 +1,6 @@
 package com.example.android.architecture.blueprints.todoapp.test.kaspresso
 
 import androidx.test.ext.junit.rules.ActivityScenarioRule
-import com.example.android.architecture.blueprints.todoapp.screen.kaspresso.AddTaskScreen
 import com.example.android.architecture.blueprints.todoapp.screen.kaspresso.TaskListScreen
 import com.example.android.architecture.blueprints.todoapp.tasks.TasksActivity
 import org.junit.Rule
