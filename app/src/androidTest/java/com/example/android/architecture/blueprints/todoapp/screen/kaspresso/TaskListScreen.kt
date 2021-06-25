@@ -36,6 +36,21 @@ object TaskListScreen: Screen<TaskListScreen>() {
         }
     }
 
+    // marks as completed odd tasks
+    fun markAsCompleted() {
+        for (i in 0 until taskListView.getSize()) {
+            taskListView {
+                childAt<TaskListScreen.TaskListItem>(i) {
+                    checkBox {
+                        if (i % 2 == 0) {
+                            click()
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     class TaskListItem(parent: Matcher<View>): KRecyclerItem<TaskListItem>(parent) {
 
         val checkBox  = KCheckBox(parent) { withId(R.id.complete_checkbox) }

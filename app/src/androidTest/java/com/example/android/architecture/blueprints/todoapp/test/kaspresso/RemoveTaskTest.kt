@@ -7,7 +7,8 @@ import com.example.android.architecture.blueprints.todoapp.tasks.TasksActivity
 import org.junit.Rule
 import org.junit.Test
 
-class RemoveTaskTest: MyTestCase() {
+// TODO Удалить TODO и проверить что она удалилась
+class RemoveTaskTest: BaseTest() {
 
     @get:Rule
     val activityScenarioRule = ActivityScenarioRule(TasksActivity::class.java)
@@ -15,9 +16,12 @@ class RemoveTaskTest: MyTestCase() {
     @Test
     fun removeTask() = run {
 
+        addTasks(1)
+
+        // mark added task as completed
         TaskListScreen {
             taskListView {
-                firstChild<TaskListScreen.TaskListItem> {
+                lastChild<TaskListScreen.TaskListItem> {
                     checkBox {
                         click()
                     }
@@ -25,20 +29,19 @@ class RemoveTaskTest: MyTestCase() {
             }
         }
 
+        // clear completed tasks
         ToolbarScreen {
-
             pressMenuKey()
-
             clear {
                 click()
             }
         }
 
+        // check added task removed
         TaskListScreen {
             taskListView {
-                hasSize(1)
-                firstChild<TaskListScreen.TaskListItem> {
-                    taskTitle.hasNoText("Build tower in Pisa")
+                lastChild<TaskListScreen.TaskListItem> {
+                    taskTitle.hasNoText("$TEST_TASK_TITLE 1")
                 }
             }
         }

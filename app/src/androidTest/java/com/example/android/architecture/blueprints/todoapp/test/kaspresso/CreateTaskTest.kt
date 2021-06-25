@@ -8,7 +8,7 @@ import org.junit.Rule
 import org.junit.Test
 
 // TODO Добавить TODO и проверить что она добавилась
-class CreateTaskTest: MyTestCase() {
+class CreateTaskTest: BaseTest() {
 
     @get:Rule
     val activityScenarioRule = ActivityScenarioRule(TasksActivity::class.java)
@@ -16,43 +16,16 @@ class CreateTaskTest: MyTestCase() {
     @Test
     fun addNewTask() = run {
 
-        TaskListScreen {
-            addButton {
-                click()
-            }
-        }
+        addTasks(1)
 
-        AddTaskScreen {
-            title {
-                replaceText(TEST_TASK_TITLE)
-            }
-            description {
-                replaceText(TEST_TASK_DESCRIPTION)
-            }
-            saveButton {
-                click()
-            }
-        }
-
+        // check added task is displayed
         TaskListScreen {
             taskListView {
-                childAt<TaskListScreen.TaskListItem>(2) {
-                    checkBox {
-                        isNotChecked()
-                    }
-                    taskTitle {
-                        isDisplayed()
-                        hasText(TEST_TASK_TITLE)
-                    }
-                }
-            }
-            taskListView {
-                hasSize(3)
                 childWith<TaskListScreen.TaskListItem> {
                     withDescendant {
-                        withText(TEST_TASK_TITLE)
+                        withText("$TEST_TASK_TITLE 1")
                     }
-                }
+                }.isDisplayed()
             }
         }
     }
