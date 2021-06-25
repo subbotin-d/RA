@@ -16,7 +16,7 @@ class RemoveTaskTest: MyTestCase() {
     fun removeTask() = run {
 
         TaskListScreen {
-            taskList {
+            taskListView {
                 firstChild<TaskListScreen.TaskListItem> {
                     checkBox {
                         click()
@@ -35,7 +35,7 @@ class RemoveTaskTest: MyTestCase() {
         }
 
         TaskListScreen {
-            taskList {
+            taskListView {
                 hasSize(1)
                 firstChild<TaskListScreen.TaskListItem> {
                     taskTitle.hasNoText("Build tower in Pisa")

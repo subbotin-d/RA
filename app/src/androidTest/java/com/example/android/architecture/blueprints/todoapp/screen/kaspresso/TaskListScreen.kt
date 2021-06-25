@@ -14,7 +14,7 @@ object TaskListScreen: Screen<TaskListScreen>() {
 
     val addButton = KButton { withId(R.id.add_task_fab) }
 
-    val taskList = KRecyclerView(
+    val taskListView = KRecyclerView(
         builder = {
             withId(R.id.tasks_list)
         },
@@ -22,6 +22,19 @@ object TaskListScreen: Screen<TaskListScreen>() {
             itemType(::TaskListItem)
         }
     )
+
+    fun checkCompletedDisplayed() {
+        taskListView {
+            for (i in 0 until getSize()) {
+                childAt<TaskListScreen.TaskListItem>(i) {
+                    checkBox {
+                        isDisplayed()
+                        isChecked()
+                    }
+                }
+            }
+        }
+    }
 
     class TaskListItem(parent: Matcher<View>): KRecyclerItem<TaskListItem>(parent) {
 

@@ -14,7 +14,7 @@ open class MyTestCase: TestCase(getBuilder()) {
         private val myBuilder: Kaspresso.Builder
             get() = Kaspresso.Builder.simple().apply {
                 flakySafetyParams = FlakySafetyParams.default().apply {
-                    timeoutMs = 3_000
+                    timeoutMs = 5000
                 }
             }
         fun getBuilder() = myBuilder

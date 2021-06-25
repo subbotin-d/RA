@@ -35,7 +35,7 @@ class CreateTaskTest: MyTestCase() {
         }
 
         TaskListScreen {
-            taskList {
+            taskListView {
                 childAt<TaskListScreen.TaskListItem>(2) {
                     checkBox {
                         isNotChecked()
@@ -46,8 +46,13 @@ class CreateTaskTest: MyTestCase() {
                     }
                 }
             }
-            taskList {
+            taskListView {
                 hasSize(3)
+                childWith<TaskListScreen.TaskListItem> {
+                    withDescendant {
+                        withText(TEST_TASK_TITLE)
+                    }
+                }
             }
         }
     }
