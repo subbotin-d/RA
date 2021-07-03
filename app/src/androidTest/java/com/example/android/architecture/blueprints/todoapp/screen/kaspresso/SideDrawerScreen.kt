@@ -1,12 +1,12 @@
 package com.example.android.architecture.blueprints.todoapp.screen.kaspresso
 
 import com.agoda.kakao.navigation.KNavigationView
+import com.agoda.kakao.screen.Screen
 import com.agoda.kakao.text.KButton
 import com.example.android.architecture.blueprints.todoapp.R
-import com.example.android.architecture.blueprints.todoapp.screen.BaseScreen
 import org.hamcrest.Matchers
 
-object SideDrawerScreen : BaseScreen<SideDrawerScreen>() {
+object SideDrawerScreen : Screen<SideDrawerScreen>() {
 
     val hamburgerMenu = KButton {
         withParent { withId(R.id.toolbar) }
