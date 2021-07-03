@@ -14,15 +14,15 @@ object SideDrawerScreen : Screen<SideDrawerScreen>() {
     }
     val sideDrawer = KNavigationView { withId(R.id.nav_view) }
 
-    fun showTaskListScreen() {
-        showScreen(R.id.tasks_list)
+    fun openTaskListScreen() {
+        openScreen(R.id.tasks_list)
     }
 
-    fun showStatisticsScreen() {
-        showScreen(R.id.statistics_fragment_dest)
+    fun openStatisticsScreen() {
+        openScreen(R.id.statistics_fragment_dest)
     }
 
-    private fun showScreen(screenId : Int) {
+    private fun openScreen(screenId : Int) {
         hamburgerMenu.click()
         sideDrawer.isDisplayed()
         sideDrawer.navigateTo(screenId)

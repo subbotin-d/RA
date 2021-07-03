@@ -23,42 +23,47 @@ class TodoTests : TestCase() {
 
     @Test
     fun checkAddNewTodo() {
-        val countBefore = TodoListScreen.todoList.getSize()
-        val newItemTitle = "My first kaspresso note title"
-        val newItemDescription = "My first kaspresso note description"
-
-        createTodo(newItemTitle, newItemDescription)
 
         TodoListScreen {
-            todoList.childAt<TodoListScreen.TodoListItem>(countBefore) {
-                titleLabel.containsText(newItemTitle)
-            }
+            addTodoFab.click()
+        }
 
-            todoList.hasSize(countBefore + 1)
+        AddTodoScreen {
+            titleInput.replaceText("My first kaspresso note title")
+            descriptionInput.replaceText("My first kaspresso note description")
+            saveFab.click()
+        }
+
+        TodoListScreen {
+            todoList {
+                childAt<TodoListScreen.TodoListItem>(2) {
+                    titleLabel.hasText("My first kaspresso note title")
+                }
+                hasSize(3)
+            }
         }
     }
 
     @Test
     fun checkRemoveLastTodo() {
-        val countBefore = TodoListScreen.todoList.getSize()
-        if(countBefore <= 0)
-            throw Exception("List has no items to remove")
-
-        var removingItemTitle : String = ""
-
-        TodoListScreen.todoList.childAt<TodoListScreen.TodoListItem>(countBefore - 1) {
-            click()
+        TodoListScreen {
+            todoList {
+                childAt<TodoListScreen.TodoListItem>(0) {
+                    click()
+                }
+            }
         }
 
         TodoDetailsScreen {
-            removingItemTitle = titleLabel.getText()
             deleteButton.click()
         }
 
         TodoListScreen {
-            todoList.hasSize(countBefore - 1)
-            todoList.children<TodoListScreen.TodoListItem> {
-                titleLabel.hasNoText(removingItemTitle)
+            todoList {
+                hasSize(1)
+                children<TodoListScreen.TodoListItem> {
+                    titleLabel.hasNoText("Build tower in Pisa")
+                }
             }
         }
     }
@@ -66,59 +71,51 @@ class TodoTests : TestCase() {
     @Test
     fun checkCompletedTodoFilter() {
         TodoListScreen {
-            var countAll : Int = 0
-            countAll = todoList.getSize()
-            if(countAll < 1)
-                throw Exception("Not enough data to perform test")
-
-            var completedTodoTitle : String = ""
-            todoList.firstChild<TodoListScreen.TodoListItem> {
-                completedTodoTitle = titleLabel.getText()
-                doneCheckbox.click()
-                doneCheckbox.isChecked()
+            todoList {
+                firstChild<TodoListScreen.TodoListItem> {
+                    doneCheckbox {
+                        click()
+                        isChecked()
+                    }
+                }
             }
 
             filterMenuButton.click()
             filterMenuCompletedButton.click()
 
-            todoList.hasSize(1)
-            todoList.children<TodoListScreen.TodoListItem> {
-                titleLabel.hasText(completedTodoTitle)
+            todoList {
+                hasSize(1)
+                children<TodoListScreen.TodoListItem> {
+                    titleLabel.hasText("Build tower in Pisa")
+                }
             }
         }
     }
 
     @Test
     fun checkCompletedTodoStatistics() {
-        var countAll = 0
-        var completedCount = 0
-
-        createTodo("test title", "test description")
+        createTodoByFab("test title", "test description")
 
         TodoListScreen {
-            countAll = todoList.getSize()
-            if (countAll < 2)
-                throw Exception("Not enough data to perform test")
-
             todoList.firstChild<TodoListScreen.TodoListItem> {
-                doneCheckbox.click()
-                doneCheckbox.isChecked()
+                doneCheckbox {
+                    click()
+                    isChecked()
+                }
             }
-
-            completedCount = 1
         }
 
         SideDrawerScreen {
-            showStatisticsScreen()
+            openStatisticsScreen()
         }
 
         StatisticsScreen {
-            activeTasksLabel.containsText("${(100.0 * (countAll - completedCount) / countAll).truncate(1)}%")
-            completedTodoLabel.containsText("${(100.0 * completedCount / countAll).truncate(1)}%")
+            activeTasksLabel.containsText("66.7%")
+            completedTodoLabel.containsText("33.3%")
         }
     }
 
-    private fun createTodo(title: String, description: String) {
+    private fun createTodoByFab(title: String, description: String) {
         TodoListScreen {
             addTodoFab.click()
         }
